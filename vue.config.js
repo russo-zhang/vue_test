@@ -3,7 +3,7 @@ const IS_DEV = process.env.NODE_ENV === "development";
 const resolve = (dir) => path.join(__dirname, dir); // 路径
 const CompressionPlugin = require("compression-webpack-plugin");
 module.exports = {
-    publicPath: IS_DEV ? "/" : "./",
+    publicPath: "/",
     productionSourceMap: false, //生产环境源码映射
     chainWebpack: (config) => {
         config.plugin("html").tap((args) => {
