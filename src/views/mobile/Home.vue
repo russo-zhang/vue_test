@@ -1,6 +1,8 @@
 <template>
     <div class="home">
-        <a href="javascript:;" @click="share">share</a>
+        <main>
+            <el-button @click="share">share</el-button>
+        </main>
     </div>
 </template>
 
@@ -9,7 +11,9 @@ const share = () => {
     (window as any).FB.ui(
         {
             method: "share",
-            href: "https://developers.facebook.com/docs/",
+            hashtag: "#hello vue3",
+            href: "https://www.vue-test.site",
+            redirect_uri: true,
         },
         function (response: any) {
             console.log("response:", response);
@@ -19,5 +23,7 @@ const share = () => {
 </script>
 <style lang="less" scoped>
 main {
+    width: 30vw;
+    margin: 100px auto;
 }
 </style>
