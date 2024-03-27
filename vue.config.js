@@ -7,7 +7,7 @@ module.exports = {
     productionSourceMap: false, //生产环境源码映射
     chainWebpack: (config) => {
         config.plugin("html").tap((args) => {
-            args[0].title = "Master Play";
+            args[0].title = "Vue For Test";
             return args;
         });
         //消除vue-i18n的警告
