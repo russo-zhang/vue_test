@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <main>
-            <el-button @click="share">share</el-button>
+            <el-button @click="share">Facebook share</el-button>
         </main>
     </div>
 </template>
@@ -13,7 +13,8 @@ const share = () => {
             method: "share",
             hashtag: "#hello vue3",
             href: "https://www.vue-test.site",
-            redirect_uri: true,
+            display: "popup",
+            redirect_uri: "https://www.vue-test.site", //用户在完成 Facebook 对话框操作后跳转的 URL
         },
         function (response: any) {
             console.log("response:", response);
@@ -23,7 +24,7 @@ const share = () => {
 </script>
 <style lang="less" scoped>
 main {
-    width: 30vw;
+    width: 100vw;
     margin: 100px auto;
 }
 </style>
