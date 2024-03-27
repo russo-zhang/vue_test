@@ -1,31 +1,21 @@
 <template>
     <div class="home">
-        <Header></Header>
-        <main>
-            <div v-if="isIOS">IOS</div>
-            <div v-else>Android</div>
-        </main>
-        <Footer></Footer>
+        <a href="javascript:;" @click="share">share</a>
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref, toRefs, computed } from "vue";
-import Header from "@/components/mobile/layout/Header.vue";
-import Footer from "@/components/mobile/layout/Footer.vue";
-import { isIOS } from "@/utils";
-export default defineComponent({
-    name: "HomeView",
-    components: {
-        Header,
-        Footer,
-    },
-    setup() {
-        return {
-            isIOS,
-        };
-    },
-});
+<script lang="ts" setup>
+const share = () => {
+    (window as any).FB.ui(
+        {
+            method: "share",
+            href: "https://developers.facebook.com/docs/",
+        },
+        function (response: any) {
+            console.log("response:", response);
+        },
+    );
+};
 </script>
 <style lang="less" scoped>
 main {
