@@ -3,10 +3,13 @@
         <main>
             <ul>
                 <li>
-                    <el-button type="primary" @click="twitterShare">Twitter Share</el-button>
+                    <el-button type="primary" @click="twitterShare">Twitter / X Share</el-button>
                 </li>
                 <li>
                     <el-button @click="facebookShare">Facebook Share</el-button>
+                </li>
+                <li>
+                    <el-button type="primary" @click="lineShare">Line Share</el-button>
                 </li>
             </ul>
         </main>
@@ -14,16 +17,16 @@
 </template>
 
 <script lang="ts" setup>
+const shareUrl = "https://www.vue-test.site";
 const twitterShare = () => {
     const text = "This is share text example";
-    const url = "https://www.vue-test.site";
     const via = "Your Twitter username example";
     const hashtags = "hashtags example";
     const intentUrl =
         "https://twitter.com/intent/tweet?text=" +
         encodeURIComponent(text) +
         "&url=" +
-        encodeURIComponent(url) +
+        encodeURIComponent(shareUrl) +
         "&via=" +
         encodeURIComponent(via) +
         "&hashtags=" +
@@ -35,14 +38,18 @@ const facebookShare = () => {
         {
             method: "share",
             hashtag: "#hello vue3",
-            href: "https://www.vue-test.site",
+            href: shareUrl,
             display: "popup",
-            redirect_uri: "https://www.vue-test.site", //用户在完成 Facebook 对话框操作后跳转的 URL
+            redirect_uri: shareUrl, //用户在完成 Facebook 对话框操作后跳转的 URL
         },
         function (response: any) {
             console.log("response:", response);
         },
     );
+};
+const lineShare = () => {
+    const intentUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`;
+    window.open(intentUrl, "_blank", "width=550,height=420");
 };
 </script>
 <style lang="less" scoped>
