@@ -92,7 +92,7 @@ const baiduShare = () => {
     openShareWindow(intentUrl);
 };
 const weiboShare = () => {
-    const intentUrl = `http://service.weibo.com/share/share.php?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(
+    const intentUrl = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(
         title,
     )}&pic=${encodeURIComponent(sharePic)}`;
     openShareWindow(intentUrl);
