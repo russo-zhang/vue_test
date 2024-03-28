@@ -86,7 +86,7 @@ const whatsAppShare = () => {
     });
 }; */
 const baiduShare = () => {
-    const intentUrl = `http://tieba.baidu.com/f/commit/share/openShareApi?title=${title}&url=${encodeURIComponent(
+    const intentUrl = `https://tieba.baidu.com/f/commit/share/openShareApi?title=${title}&url=${encodeURIComponent(
         shareUrl,
     )}&pic=${encodeURIComponent(sharePic)}`;
     openShareWindow(intentUrl);
