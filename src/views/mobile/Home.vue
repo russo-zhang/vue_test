@@ -11,6 +11,10 @@
                 <li>
                     <el-button type="primary" @click="lineShare">Line Share</el-button>
                 </li>
+
+                <li>
+                    <el-button @click="whatsAppShare">WhatsApp Share</el-button>
+                </li>
             </ul>
         </main>
     </div>
@@ -33,6 +37,9 @@ const twitterShare = () => {
         encodeURIComponent(hashtags);
     window.open(intentUrl, "_blank", "width=550,height=420");
 };
+const openShareWindow = (url: string) => {
+    window.open(url, "_blank", "width=550,height=420");
+};
 const facebookShare = () => {
     (window as any).FB.ui(
         {
@@ -49,7 +56,12 @@ const facebookShare = () => {
 };
 const lineShare = () => {
     const intentUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`;
-    window.open(intentUrl, "_blank", "width=550,height=420");
+    openShareWindow(intentUrl);
+};
+const whatsAppShare = () => {
+    const text = "This is share text example";
+    const intentUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
+    openShareWindow(intentUrl);
 };
 </script>
 <style lang="less" scoped>
