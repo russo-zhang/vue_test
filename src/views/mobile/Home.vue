@@ -24,6 +24,9 @@
                 <li>
                     <el-button type="primary" @click="weiboShare">微博 分享</el-button>
                 </li>
+                <li>
+                    <el-button @click="qqShare">QQ 分享</el-button>
+                </li>
             </ul>
         </main>
     </div>
@@ -34,6 +37,9 @@ const shareUrl = "https://www.vue-test.site";
 const title = "share title example";
 const shareText = "share text example";
 const sharePic = "https://www.vue-test.site/favicon.png";
+const openShareWindow = (url: string) => {
+    window.open(url, "_blank", "width=550,height=420");
+};
 const twitterShare = () => {
     const text = "This is share text example";
     const via = "Your Twitter username example";
@@ -47,10 +53,7 @@ const twitterShare = () => {
         encodeURIComponent(via) +
         "&hashtags=" +
         encodeURIComponent(hashtags);
-    window.open(intentUrl, "_blank", "width=550,height=420");
-};
-const openShareWindow = (url: string) => {
-    window.open(url, "_blank", "width=550,height=420");
+    openShareWindow(intentUrl);
 };
 const facebookShare = () => {
     (window as any).FB.ui(
@@ -95,6 +98,12 @@ const weiboShare = () => {
     const intentUrl = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(
         title,
     )}&pic=${encodeURIComponent(sharePic)}`;
+    openShareWindow(intentUrl);
+};
+const qqShare = () => {
+    const intentUrl = `https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(
+        title,
+    )}&pics=${encodeURIComponent(sharePic)}`;
     openShareWindow(intentUrl);
 };
 </script>
