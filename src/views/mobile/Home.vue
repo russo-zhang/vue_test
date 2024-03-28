@@ -12,9 +12,9 @@ const share = () => {
         {
             method: "share",
             hashtag: "#hello vue3",
-            href: "https://www.vue-test.site",
+            href: "https://vuejs.org",
             display: "popup",
-            redirect_uri: "https://www.vue-test.site", //用户在完成 Facebook 对话框操作后跳转的 URL
+            redirect_uri: "https://vuejs.org", //用户在完成 Facebook 对话框操作后跳转的 URL
         },
         function (response: any) {
             console.log("response:", response);
