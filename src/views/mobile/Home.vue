@@ -1,13 +1,36 @@
 <template>
     <div class="home">
         <main>
-            <el-button @click="share">Facebook share</el-button>
+            <ul>
+                <li>
+                    <el-button type="primary" @click="twitterShare">Twitter Share</el-button>
+                </li>
+                <li>
+                    <el-button @click="facebookShare">Facebook Share</el-button>
+                </li>
+            </ul>
         </main>
     </div>
 </template>
 
 <script lang="ts" setup>
-const share = () => {
+const twitterShare = () => {
+    const text = "This is share text example";
+    const url = "https://www.vue-test.site";
+    const via = "Your Twitter username example";
+    const hashtags = "hashtags example";
+    const intentUrl =
+        "https://twitter.com/intent/tweet?text=" +
+        encodeURIComponent(text) +
+        "&url=" +
+        encodeURIComponent(url) +
+        "&via=" +
+        encodeURIComponent(via) +
+        "&hashtags=" +
+        encodeURIComponent(hashtags);
+    window.open(intentUrl, "_blank", "width=550,height=420");
+};
+const facebookShare = () => {
     (window as any).FB.ui(
         {
             method: "share",
@@ -24,7 +47,12 @@ const share = () => {
 </script>
 <style lang="less" scoped>
 main {
-    width: 100vw;
-    margin: 100px auto;
+    padding: 10vw 5vw;
+    text-align: center;
+    ul {
+        li {
+            line-height: 6vh;
+        }
+    }
 }
 </style>
