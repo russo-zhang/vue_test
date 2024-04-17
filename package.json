@@ -9,7 +9,9 @@
     },
     "dependencies": {
         "axios": "^0.27.2",
+        "downloadjs": "^1.4.7",
         "element-plus": "^2.6.2",
+        "html-to-image": "^1.11.11",
         "vue": "^3.2.13",
         "vue-i18n": "^9.2.0",
         "vue-router": "^4.0.3"

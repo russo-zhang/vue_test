@@ -1,6 +1,10 @@
 <template>
     <div class="home">
-        <main>
+        <el-button @click="screenshot">Screenshot</el-button>
+        <main id="screenshot_node">
+            <div class="img_wrap">
+                <img src="https://www.riichicitystore.com/img/banner_pic_6.ce016e5c.png" alt="" />
+            </div>
             <ul>
                 <li>
                     <el-button type="primary" @click="twitterShare">Twitter / X Share</el-button>
@@ -106,11 +110,26 @@ const qqShare = () => {
     )}&pics=${encodeURIComponent(sharePic)}`;
     openShareWindow(intentUrl);
 };
+
+import { toPng } from "html-to-image";
+const screenshot = () => {
+    if (!document.getElementById("screenshot_node")) {
+        console.log("screenshot_node is not exist");
+        return;
+    }
+    toPng(document.getElementById("screenshot_node") as HTMLElement).then(function (dataUrl) {
+        const link = document.createElement("a");
+        link.download = "my-image-name.png";
+        link.href = dataUrl;
+        link.click();
+    });
+};
 </script>
 <style lang="less" scoped>
 main {
     padding: 10vw 5vw;
     text-align: center;
+    // background-image: url("http://10.100.1.199:6005/img/banner_pic_6.ce016e5c.png");
     ul {
         li {
             line-height: 6vh;
