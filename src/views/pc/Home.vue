@@ -3,7 +3,7 @@
         <el-button @click="screenshot">Screenshot</el-button>
         <main id="screenshot_node">
             <div class="img_wrap">
-                <img src="https://www.riichicitystore.com/img/banner_pic_6.ce016e5c.png" alt="" />
+                <img src="@/assets/image/role.png" alt="" />
             </div>
             <ul>
                 <li>
