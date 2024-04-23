@@ -42,17 +42,16 @@
 const shareUrl = "https://www.vue-test.site";
 const title = "share title example";
 const shareText = "share text example";
-const sharePic = "https://www.vue-test.site/favicon.png";
+const sharePic = "https://www.mahjong-jp.com/static/img/roles/role27.png";
 const openShareWindow = (url: string) => {
     window.open(url, "_blank", "width=550,height=420");
 };
 const twitterShare = () => {
-    const text = "This is share text example";
     const via = "Your Twitter username example";
     const hashtags = "hashtags example";
     const intentUrl =
         "https://twitter.com/intent/tweet?text=" +
-        encodeURIComponent(text) +
+        encodeURIComponent(shareText) +
         "&url=" +
         encodeURIComponent(shareUrl) +
         "&via=" +
@@ -80,8 +79,7 @@ const lineShare = () => {
     openShareWindow(intentUrl);
 };
 const whatsAppShare = () => {
-    const text = "This is share text example";
-    const intentUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
+    const intentUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     openShareWindow(intentUrl);
 };
 /* const weChatShare = () => {
