@@ -75,7 +75,9 @@ const facebookShare = () => {
     );
 };
 const lineShare = () => {
-    const intentUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`;
+    const intentUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(
+        shareText,
+    )}`;
     openShareWindow(intentUrl);
 };
 const whatsAppShare = () => {
