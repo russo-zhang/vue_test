@@ -4,7 +4,7 @@
         <main id="screenshot_node">
             <header v-if="isShowLayout">头部信息</header>
             <div class="img_wrap">
-                <img :src="roleSrc" alt="" />
+                <img :src="roleSrc" alt="" crossorigin="anonymous" />
             </div>
             <ul>
                 <li>
