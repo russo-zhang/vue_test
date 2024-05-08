@@ -4,7 +4,7 @@
         <main id="screenshot_node">
             <header v-if="isShowLayout">头部信息</header>
             <div class="img_wrap">
-                <img src="@/assets/image/role.png" alt="" />
+                <img :src="roleSrc" alt="" />
             </div>
             <ul>
                 <li>
@@ -113,8 +113,34 @@ const qqShare = () => {
     openShareWindow(intentUrl);
 };
 
+// 将图片转为base64
+const imgToBase64 = (src: string) => {
+    return new Promise((resolve, reject) => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const img = new Image();
+        img.src = src;
+        img.crossOrigin = "Anonymous";
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx?.drawImage(img, 0, 0, img.width, img.height);
+            const dataURL = canvas.toDataURL("image/png");
+            resolve(dataURL);
+        };
+    });
+};
+const roleSrc = ref();
+onMounted(() => {
+    const role = require("@/assets/image/role.png");
+    console.log("role", role);
+    imgToBase64(role).then((res) => {
+        console.log("imgToBase64:", res);
+        roleSrc.value = res;
+    });
+});
 import { toPng } from "html-to-image";
-import { nextTick, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 const isShowLayout = ref(true);
 const screenshot = () => {
     isShowLayout.value = false;
