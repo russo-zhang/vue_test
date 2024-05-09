@@ -35,10 +35,14 @@
             </ul>
             <footer v-if="isShowLayout">底部信息</footer>
         </main>
+        <div class="screenshot_img_wrap">
+            <img :src="screenshotImgSrc" alt="" />
+        </div>
     </div>
 </template>
 
 <script lang="ts" setup>
+import DeviceDetector from "device-detector-js";
 const shareUrl = "https://www.vue-test.site";
 const title = "share title example";
 const shareText = "share text example";
@@ -142,6 +146,7 @@ onMounted(() => {
 import { toPng } from "html-to-image";
 import { nextTick, onMounted, ref } from "vue";
 const isShowLayout = ref(true);
+const screenshotImgSrc = ref("");
 const screenshot = () => {
     isShowLayout.value = false;
     nextTick(() => {
@@ -151,6 +156,14 @@ const screenshot = () => {
         }
         toPng(document.getElementById("screenshot_node") as HTMLElement)
             .then(function (dataUrl) {
+                // 设备检测
+                const deviceDetector = new DeviceDetector();
+                const device = deviceDetector.parse(navigator.userAgent);
+                console.log("device.os?.name:", device.os?.name);
+                if (device.os?.name === "iOS") {
+                    screenshotImgSrc.value = dataUrl;
+                    return;
+                }
                 const link = document.createElement("a");
                 link.download = "my-image-name.png";
                 link.href = dataUrl;
@@ -183,6 +196,9 @@ main {
         li {
             line-height: 6vh;
         }
+    }
+    .screenshot_img_wrap {
+        border: 2px solid pink;
     }
 }
 </style>

@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "axios": "^0.27.2",
+        "device-detector-js": "^3.0.3",
         "downloadjs": "^1.4.7",
         "element-plus": "^2.6.2",
         "html-to-image": "^1.11.11",
