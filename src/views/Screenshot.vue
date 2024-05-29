@@ -59,17 +59,21 @@ const screenshot = () => {
         console.log("screenshot_node is not exist");
         return;
     }
-    toPng(document.getElementById("screenshot_node") as HTMLElement).then(function (dataUrl) {
-        // 设备检测
-        const deviceDetector = new DeviceDetector();
-        const device = deviceDetector.parse(navigator.userAgent);
-        console.log("device.os?.name:", device.os?.name);
-        if (device.os?.name === "iOS") {
-            screenshotImgSrc.value = dataUrl;
-            showDialog.value = true;
-            return;
-        }
-    });
+    toPng(document.getElementById("screenshot_node") as HTMLElement)
+        .then(function (dataUrl) {
+            // 设备检测
+            const deviceDetector = new DeviceDetector();
+            const device = deviceDetector.parse(navigator.userAgent);
+            console.log("device.os?.name:", device.os?.name);
+            if (device.os?.name === "iOS") {
+                screenshotImgSrc.value = dataUrl;
+                showDialog.value = true;
+                return;
+            }
+        })
+        .catch(function (error) {
+            alert(`截图失败: ${error}`);
+        });
     // .then(() => {
     //     // 重新显示布局
     //     isShowLayout.value = true;
