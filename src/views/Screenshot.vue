@@ -53,29 +53,28 @@ import { nextTick, onMounted, ref } from "vue";
 const isShowLayout = ref(true);
 const screenshotImgSrc = ref("");
 const screenshot = () => {
-    isShowLayout.value = false;
-    nextTick(() => {
-        if (!document.getElementById("screenshot_node")) {
-            console.log("screenshot_node is not exist");
+    // isShowLayout.value = false;
+    // nextTick(() => {
+    if (!document.getElementById("screenshot_node")) {
+        console.log("screenshot_node is not exist");
+        return;
+    }
+    toPng(document.getElementById("screenshot_node") as HTMLElement).then(function (dataUrl) {
+        // 设备检测
+        const deviceDetector = new DeviceDetector();
+        const device = deviceDetector.parse(navigator.userAgent);
+        console.log("device.os?.name:", device.os?.name);
+        if (device.os?.name === "iOS") {
+            screenshotImgSrc.value = dataUrl;
+            showDialog.value = true;
             return;
         }
-        toPng(document.getElementById("screenshot_node") as HTMLElement)
-            .then(function (dataUrl) {
-                // 设备检测
-                const deviceDetector = new DeviceDetector();
-                const device = deviceDetector.parse(navigator.userAgent);
-                console.log("device.os?.name:", device.os?.name);
-                if (device.os?.name === "iOS") {
-                    screenshotImgSrc.value = dataUrl;
-                    showDialog.value = true;
-                    return;
-                }
-            })
-            .then(() => {
-                // 重新显示布局
-                isShowLayout.value = true;
-            });
     });
+    // .then(() => {
+    //     // 重新显示布局
+    //     isShowLayout.value = true;
+    // });
+    // });
 };
 const showDialog = ref(false);
 </script>
