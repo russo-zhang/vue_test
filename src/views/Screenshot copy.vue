@@ -48,8 +48,7 @@ onMounted(() => {
         roleSrc.value = res;
     });
 });
-import html2canvas from "html2canvas";
-
+import { toPng } from "html-to-image";
 import { nextTick, onMounted, ref } from "vue";
 const isShowLayout = ref(true);
 const screenshotImgSrc = ref("");
@@ -60,14 +59,13 @@ const screenshot = () => {
         console.log("screenshot_node is not exist");
         return;
     }
-    html2canvas(document.getElementById("screenshot_node") as HTMLElement)
-        .then(function (canvas) {
+    toPng(document.getElementById("screenshot_node") as HTMLElement)
+        .then(function (dataUrl) {
             // 设备检测
             const deviceDetector = new DeviceDetector();
             const device = deviceDetector.parse(navigator.userAgent);
             console.log("device.os?.name:", device.os?.name);
             if (device.os?.name === "iOS") {
-                const dataUrl = canvas.toDataURL("image/png");
                 screenshotImgSrc.value = dataUrl;
                 showDialog.value = true;
                 return;
