@@ -6,6 +6,11 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/pc/Home.vue"),
     },
     {
+        path: "/screenshot",
+        name: "Screenshot",
+        component: () => import("@/views/Screenshot.vue"),
+    },
+    {
         path: "/forbidden",
         name: "Forbidden",
         component: () => import("@/views/Forbidden.vue"),
