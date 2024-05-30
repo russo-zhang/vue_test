@@ -11,6 +11,10 @@ const DEV_ENVIRONMENT = "DEV";
 function getIsProd() {
     const domain = window.location.hostname;
     const protocol = window.location.protocol;
+    console.log("domain:", domain);
+    console.log("protocol:", protocol);
+    console.log("PROD_DOMAINS.includes(domain) :", PROD_DOMAINS.includes(domain));
+    console.log("protocol === PROD_PROTOCOL:", protocol === PROD_PROTOCOL);
     return PROD_DOMAINS.includes(domain) && protocol === PROD_PROTOCOL;
     // return true;
 }
