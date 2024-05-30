@@ -18,7 +18,7 @@ module.exports = {
         const copyWebpackPlugin = new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: IS_DEV ? "public/resource/env.development.js" : "public/resource/env.production.js",
+                    from: IS_DEV ? "env/payment/env.development.js" : "env/payment/env.production.js",
                     to: "resource/env.js",
                 },
             ],
