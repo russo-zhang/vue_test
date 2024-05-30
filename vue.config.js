@@ -19,7 +19,7 @@ module.exports = {
             patterns: [
                 {
                     from: IS_DEV ? "public/resource/env.development.js" : "public/resource/env.production.js",
-                    to: "public/resource/env.js",
+                    to: "resource/env.js",
                 },
             ],
         });
