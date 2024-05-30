@@ -1,4 +1,4 @@
-const PROD_DOMAINS = ["www.vue-test.site", "vue-test.site"];
+/* const PROD_DOMAINS = ["www.vue-test.site", "vue-test.site"];
 // const PROD_DOMAINS = ["www.mahjong-jp.com", "mahjong-jp.com", "www.lizhimahjong.com", "www.mqyfj.com"];
 const PROD_PROTOCOL = "https:";
 
@@ -20,6 +20,9 @@ function getIsProd() {
 }
 const isProd = getIsProd();
 var server_url = isProd ? PROD_SERVER_URL : DEV_SERVER_URL;
-var ENVIRONMENT = isProd ? PROD_ENVIRONMENT : DEV_ENVIRONMENT;
+var ENVIRONMENT = isProd ? PROD_ENVIRONMENT : DEV_ENVIRONMENT; */
+
+var server_url = "https://dunu5s1vzgz6j.cloudfront.net";
+var ENVIRONMENT = "PROD";
 console.log("env.js server_url:", server_url);
 console.log("env.js ENVIRONMENT:", ENVIRONMENT);
