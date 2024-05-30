@@ -54,33 +54,33 @@ import { nextTick, onMounted, ref } from "vue";
 const isShowLayout = ref(true);
 const screenshotImgSrc = ref("");
 const screenshot = () => {
-    // isShowLayout.value = false;
-    // nextTick(() => {
-    if (!document.getElementById("screenshot_node")) {
-        console.log("screenshot_node is not exist");
-        return;
-    }
-    html2canvas(document.getElementById("screenshot_node") as HTMLElement)
-        .then(function (canvas) {
-            // 设备检测
-            const deviceDetector = new DeviceDetector();
-            const device = deviceDetector.parse(navigator.userAgent);
-            console.log("device.os?.name:", device.os?.name);
-            if (device.os?.name === "iOS") {
-                const dataUrl = canvas.toDataURL("image/png");
-                screenshotImgSrc.value = dataUrl;
-                showDialog.value = true;
-                return;
-            }
-        })
-        .catch(function (error) {
-            alert(`截图失败: ${error}`);
-        });
-    // .then(() => {
-    //     // 重新显示布局
-    //     isShowLayout.value = true;
-    // });
-    // });
+    isShowLayout.value = false;
+    nextTick(() => {
+        if (!document.getElementById("screenshot_node")) {
+            console.log("screenshot_node is not exist");
+            return;
+        }
+        html2canvas(document.getElementById("screenshot_node") as HTMLElement)
+            .then(function (canvas) {
+                // 设备检测
+                const deviceDetector = new DeviceDetector();
+                const device = deviceDetector.parse(navigator.userAgent);
+                console.log("device.os?.name:", device.os?.name);
+                if (device.os?.name === "iOS") {
+                    const dataUrl = canvas.toDataURL("image/png");
+                    screenshotImgSrc.value = dataUrl;
+                    showDialog.value = true;
+                    return;
+                }
+            })
+            .then(() => {
+                // 重新显示布局
+                isShowLayout.value = true;
+            })
+            .catch(function (error) {
+                alert(`截图失败: ${error}`);
+            });
+    });
 };
 const showDialog = ref(false);
 </script>
