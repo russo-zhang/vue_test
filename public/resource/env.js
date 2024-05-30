@@ -1,6 +1,6 @@
 const PROD_DOMAINS = ["www.vue-test.site", "vue-test.site"];
 // const PROD_DOMAINS = ["www.mahjong-jp.com", "mahjong-jp.com", "www.lizhimahjong.com", "www.mqyfj.com"];
-const PROD_PROTOCOL = "https";
+const PROD_PROTOCOL = "https:";
 
 const PROD_SERVER_URL = "https://dunu5s1vzgz6j.cloudfront.net";
 const PROD_ENVIRONMENT = "PROD";
