@@ -65,7 +65,7 @@ const facebookShare = () => {
     (window as any).FB.ui(
         {
             method: "share",
-            hashtag: "#hello vue3",
+            hashtag: "#hello vue3 #hi vue3",
             href: shareUrl,
             display: "popup",
             redirect_uri: shareUrl, //用户在完成 Facebook 对话框操作后跳转的 URL
