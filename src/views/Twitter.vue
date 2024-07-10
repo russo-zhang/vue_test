@@ -39,6 +39,8 @@ onMounted(() => {
 .Twitter {
     .timeline_wrap {
         width: 60vw;
+        height: 80vh;
+        overflow-y: auto;
         margin: 10px auto;
         border: 3px solid #ccc;
     }
