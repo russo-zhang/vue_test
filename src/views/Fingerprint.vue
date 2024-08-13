@@ -1,6 +1,7 @@
 <template>
     <div class="Fingerprint">
         <h1>Fingerprint:{{ fingerprintjs2Value }}</h1>
+        <h1>IP: {{ ipValue }}</h1>
         <hr />
         <ul>
             <li v-for="item in fingerprintjs2Arr" :key="item.key">{{ item.key }}:{{ item.value }}</li>
@@ -30,6 +31,37 @@ const createBrowserFinger = () => {
     });
 };
 createBrowserFinger();
+
+async function getLocalIP() {
+    return new Promise((resolve, reject) => {
+        const peerConnection = new RTCPeerConnection();
+        peerConnection.createDataChannel("");
+        peerConnection.createOffer().then((offer) => peerConnection.setLocalDescription(offer));
+        peerConnection.onicecandidate = (event) => {
+            if (event && event.candidate && event.candidate.candidate) {
+                const candidate = event.candidate.candidate;
+                const ipRegex = /([0-9]{1,3}\.){3}[0-9]{1,3}/;
+                const ipAddress = ipRegex.exec(candidate);
+                if (ipAddress) {
+                    resolve(ipAddress[0]);
+                    peerConnection.close();
+                }
+            }
+        };
+        setTimeout(() => {
+            reject("Could not find IP address");
+            peerConnection.close();
+        }, 1000);
+    });
+}
+const ipValue = ref("");
+getLocalIP()
+    .then((ip: any) => {
+        ipValue.value = ip;
+    })
+    .catch((error) => {
+        ipValue.value = `Error: ${error}`;
+    });
 </script>
 
 <style lang="less" scoped>
