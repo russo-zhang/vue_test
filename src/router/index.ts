@@ -16,6 +16,11 @@ const commonRoutes: Array<RouteRecordRaw> = [
         name: "twitter",
         component: () => import("@/views/Twitter.vue"),
     },
+    {
+        path: "/fingerprint",
+        name: "fingerprint",
+        component: () => import("@/views/Fingerprint.vue"),
+    },
 ];
 routes.push(...commonRoutes);
 
