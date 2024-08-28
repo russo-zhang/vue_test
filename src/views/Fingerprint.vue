@@ -34,24 +34,29 @@ createBrowserFinger();
 
 async function getLocalIP() {
     return new Promise((resolve, reject) => {
-        const peerConnection = new RTCPeerConnection();
-        peerConnection.createDataChannel("");
-        peerConnection.createOffer().then((offer) => peerConnection.setLocalDescription(offer));
-        peerConnection.onicecandidate = (event) => {
-            if (event && event.candidate && event.candidate.candidate) {
-                const candidate = event.candidate.candidate;
-                const ipRegex = /([0-9]{1,3}\.){3}[0-9]{1,3}/;
-                const ipAddress = ipRegex.exec(candidate);
-                if (ipAddress) {
-                    resolve(ipAddress[0]);
-                    peerConnection.close();
-                }
-            }
-        };
-        setTimeout(() => {
-            reject("Could not find IP address");
-            peerConnection.close();
-        }, 1000);
+        var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+        var pc = new myPeerConnection({ iceServers: [] }),
+            noop = function () {};
+        var localIPs = {};
+        pc.createDataChannel("");
+        pc.createOffer()
+            .then(function (sdp: any) {
+                sdp.sdp.split("\n").forEach(function (line: any) {
+                    if (line.indexOf("candidate") < 0) return;
+                    line.match(ipRegex).forEach(function (ip: any) {
+                        localIPs[ip] = true;
+                    });
+                });
+                pc.setLocalDescription(sdp, noop, noop);
+            })
+            .catch(function (reason) {
+                console.log(reason);
+            });
+        var ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
+        var ips = Object.keys(localIPs);
+        console.log("ips:", ips);
+        console.log(ips[0]);
+        return resolve(ips[0]);
     });
 }
 const ipValue = ref("");

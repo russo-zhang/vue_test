@@ -21,6 +21,16 @@ const commonRoutes: Array<RouteRecordRaw> = [
         name: "fingerprint",
         component: () => import("@/views/Fingerprint.vue"),
     },
+    {
+        path: "/relation",
+        name: "relation",
+        component: () => import("@/views/relation/Father.vue"),
+    },
+    {
+        path: "/live2d",
+        name: "live2d",
+        component: () => import("@/views/live2d/Live2d.vue"),
+    },
 ];
 routes.push(...commonRoutes);
 
