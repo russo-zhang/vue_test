@@ -31,6 +31,12 @@ const commonRoutes: Array<RouteRecordRaw> = [
         name: "live2d",
         component: () => import("@/views/live2d/Live2d.vue"),
     },
+    {
+        path: "/keyboard",
+        name: "keyboard",
+        component: () => import("@/views/Keyboard.vue"),
+    },
+    
 ];
 routes.push(...commonRoutes);
 
