@@ -6,13 +6,13 @@
 <script setup>
 import "pixi-spine";
 import { Application, Assets } from "pixi.js";
-import { getSpine } from "./utils/spine-example";
+import { getSpine, getExampleSize } from "./utils/spine-example";
 import { onMounted, onBeforeUnmount, ref } from "vue";
 const liveCanvas = ref(null);
 let app;
 onMounted(async () => {
     app = new Application({
-        backgroundColor: "#000",
+        backgroundColor: "#3a3d41",
         view: liveCanvas.value,
         autoStart: true,
         resizeTo: window,
@@ -48,6 +48,16 @@ async function loadGameAssets() {
 
 function resizeCanvas() {
     const resize = () => {
+        const { scale } = getExampleSize();
+        // console.log("width:", width);
+        // console.log("height:", height);
+        // const ratio = window.devicePixelRatio || 1;
+
+        // app.renderer.resize(width * ratio, height * ratio);
+        console.log("scale:", scale);
+        app.stage.scale.set(scale, scale);
+        // app.view.style.width = `${window.innerWidth}px`;
+        // app.view.style.height = `${window.innerHeight}px`;
         // app.renderer.resize(window.innerWidth, window.innerHeight);
         // app.stage.scale.x = window.innerWidth / gameWidth;
         // app.stage.scale.y = window.innerHeight / gameHeight;
@@ -64,7 +74,7 @@ onBeforeUnmount(() => {
 
 <style lang="less" scoped>
 body {
-    overflow: hidden;
+    // overflow: hidden;
     margin: 0 auto;
     background-color: black;
     #canvas {

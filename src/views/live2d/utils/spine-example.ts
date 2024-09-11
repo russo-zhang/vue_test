@@ -9,12 +9,20 @@ export async function getSpine() {
         console.log("spineResource:", spineResource);
         const spineExample = new Spine(spineResource.spineData);
         console.log("spineExample:", spineExample);
-        // spineExample.scale.set(0.4, 0.4);
-        const { width, height } = getExampleSize();
+        const { width, height, ratio } = getExampleSize();
+        // alert(`width:${width}, height:${height}`);
+        // console.log("scale:", scale);
+        // console.log("width:", width);
+        console.log("window.innerHeight:", window.innerHeight * ratio);
+        console.log("height:", height);
+        // spineExample.scale.set(scale, scale);
         spineExample.width = width;
         spineExample.height = height;
-        spineExample.x = window.innerWidth / 2 - width / 2;
-        spineExample.y = window.innerHeight - (window.innerHeight - height) / 2;
+        spineExample.x = (window.innerWidth * ratio - width) / 2;
+        console.log("spineExample.x:", spineExample.x);
+        // spineExample.y = window.innerHeight * ratio;
+        // spineExample.y = window.innerHeight * ratio * 2 - height / 2;
+        spineExample.y = (window.innerHeight * ratio + height) / 2;
         // 设置皮肤 [HAIXIU, HAIXIU, KAIXIN, Normal, SHENGQI, WEIXIAO, WUNAI]
         spineExample.skeleton.setSkinByName("Normal");
         //动画轨道的索引, 动画名称, 是否循环播放
@@ -24,13 +32,15 @@ export async function getSpine() {
         console.log("error:", error);
     }
 }
-const getExampleSize = () => {
+export const getExampleSize = () => {
+    const ratio = window.devicePixelRatio || 1;
     const rate = 0.8;
     const modelWidth = 1294.28 * rate;
     const modelHeight = 2602.02 * rate;
-    const windowWidth = window.innerWidth * rate;
-    const windowHeight = window.innerHeight * rate;
-    const size = { width: 0, height: 0 };
+    const windowWidth = window.innerWidth * ratio * rate;
+    const windowHeight = window.innerHeight * ratio * rate;
+    const scale = Math.round((1 / ratio) * 1000) / 1000;
+    const size = { ratio, scale, width: 0, height: 0 };
     if (isMobile()) {
         size.width = windowWidth;
         size.height = (modelHeight * windowWidth) / modelWidth;
@@ -38,6 +48,8 @@ const getExampleSize = () => {
         size.height = windowHeight;
         size.width = (modelWidth * windowHeight) / modelHeight;
     }
+    // size.width = size.width * ratio;
+    // size.height = size.height * ratio;
     return size;
 };
 /* export async function getSpine(): Promise<Spine> {
