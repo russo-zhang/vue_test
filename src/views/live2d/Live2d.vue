@@ -49,18 +49,8 @@ async function loadGameAssets() {
 function resizeCanvas() {
     const resize = () => {
         const { scale } = getExampleSize();
-        // console.log("width:", width);
-        // console.log("height:", height);
-        // const ratio = window.devicePixelRatio || 1;
-
-        // app.renderer.resize(width * ratio, height * ratio);
-        console.log("scale:", scale);
         app.stage.scale.set(scale, scale);
-        // app.view.style.width = `${window.innerWidth}px`;
-        // app.view.style.height = `${window.innerHeight}px`;
-        // app.renderer.resize(window.innerWidth, window.innerHeight);
-        // app.stage.scale.x = window.innerWidth / gameWidth;
-        // app.stage.scale.y = window.innerHeight / gameHeight;
+        app.renderer.resize(window.innerWidth, window.innerHeight);
     };
 
     resize();
