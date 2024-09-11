@@ -1,36 +1,32 @@
 <template>
     <div class="Live2d">
-        <!-- <canvas id="canvas" ref="liveCanvas"></canvas> -->
+        <canvas id="canvas" ref="liveCanvas"></canvas>
     </div>
 </template>
 <script setup>
 import "pixi-spine";
 import { Application, Assets } from "pixi.js";
 import { getSpine } from "./utils/spine-example";
+import { onMounted, onBeforeUnmount, ref } from "vue";
+const liveCanvas = ref(null);
 let app;
-window.onload = async () => {
-    try {
-        const gameWidth = window.innerWidth;
-        const gameHeight = window.innerHeight;
-        app = new Application({
-            // backgroundColor: 0xd3d3d3,
-            width: gameWidth,
-            height: gameHeight,
-        });
-        await loadGameAssets();
+onMounted(async () => {
+    app = new Application({
+        backgroundColor: "#000",
+        view: liveCanvas.value,
+        autoStart: true,
+        resizeTo: window,
+        backgroundAlpha: 1,
+    });
+    await loadGameAssets();
 
-        document.body.appendChild(app.view);
+    resizeCanvas();
 
-        resizeCanvas();
+    const spineExample = await getSpine();
 
-        const spineExample = await getSpine();
-
-        app.stage.addChild(spineExample);
-        app.stage.interactive = true;
-    } catch (error) {
-        console.log(error);
-    }
-};
+    app.stage.addChild(spineExample);
+    app.stage.interactive = true;
+});
 async function loadGameAssets() {
     const manifest = {
         bundles: [
@@ -61,6 +57,9 @@ function resizeCanvas() {
 
     window.addEventListener("resize", resize);
 }
+onBeforeUnmount(() => {
+    app?.destroy();
+});
 </script>
 
 <style lang="less" scoped>
@@ -68,5 +67,9 @@ body {
     overflow: hidden;
     margin: 0 auto;
     background-color: black;
+    #canvas {
+        width: 100%;
+        height: 100%;
+    }
 }
 </style>
