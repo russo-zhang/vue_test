@@ -48,9 +48,11 @@ async function loadGameAssets() {
 
 function resizeCanvas() {
     const resize = () => {
-        const { scale } = getExampleSize();
-        app.stage.scale.set(scale, scale);
-        app.renderer.resize(window.innerWidth, window.innerHeight);
+        const { scale, ratio } = getExampleSize();
+        console.log("scale:", scale);
+        // alert(`scale:${scale},width:${window.innerWidth * ratio},height:${window.innerHeight * ratio}`);
+        // app.stage.scale.set(scale, scale);
+        app.renderer.resize(window.innerWidth * ratio, window.innerHeight * ratio);
     };
 
     resize();
@@ -64,8 +66,6 @@ onBeforeUnmount(() => {
 
 <style lang="less" scoped>
 body {
-    // overflow: hidden;
-    margin: 0 auto;
     background-color: black;
     #canvas {
         width: 100%;

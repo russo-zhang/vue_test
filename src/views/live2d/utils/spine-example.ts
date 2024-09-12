@@ -41,6 +41,7 @@ export const getExampleSize = () => {
     const windowHeight = window.innerHeight * ratio * rate;
     const scale = Math.round((1 / ratio) * 1000) / 1000;
     const size = { ratio, scale, width: 0, height: 0 };
+    // alert(`size:${JSON.stringify(size)}, ratio:${ratio}`);
     if (isMobile()) {
         size.width = windowWidth;
         size.height = (modelHeight * windowWidth) / modelWidth;
