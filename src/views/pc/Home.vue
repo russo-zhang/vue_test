@@ -1,5 +1,7 @@
 <template>
     <div class="home">
+        <p>domainName:{{ domainName }}</p>
+        <hr />
         <el-button @click="screenshot">Screenshot</el-button>
         <main id="screenshot_node">
             <header v-if="isShowLayout">头部信息</header>
@@ -114,7 +116,7 @@ const qqShare = () => {
 };
 
 import { toPng } from "html-to-image";
-import { nextTick, ref } from "vue";
+import { computed, nextTick, ref } from "vue";
 const isShowLayout = ref(true);
 const screenshot = () => {
     isShowLayout.value = false;
@@ -136,6 +138,10 @@ const screenshot = () => {
             });
     });
 };
+console.log(window.location);
+const domainName = computed(() => {
+    return window.location.origin;
+}); // 获取当前域名
 </script>
 <style lang="less" scoped>
 main {

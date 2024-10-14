@@ -10,7 +10,12 @@ import { getSpine, getExampleSize } from "./utils/spine-example";
 import { onMounted, onBeforeUnmount, ref } from "vue";
 const liveCanvas = ref(null);
 let app;
-onMounted(async () => {
+onMounted(() => {
+    init();
+    // resizeCanvas();
+    window.addEventListener("resize", resize);
+});
+const init = async () => {
     app = new Application({
         backgroundColor: "#3a3d41",
         view: liveCanvas.value,
@@ -20,13 +25,14 @@ onMounted(async () => {
     });
     await loadGameAssets();
 
-    resizeCanvas();
-
     const spineExample = await getSpine();
+
+    const { ratio } = getExampleSize();
+    app.renderer.resize(window.innerWidth * ratio, window.innerHeight * ratio);
 
     app.stage.addChild(spineExample);
     app.stage.interactive = true;
-});
+};
 async function loadGameAssets() {
     const manifest = {
         bundles: [
@@ -46,21 +52,30 @@ async function loadGameAssets() {
     await Assets.loadBundle(["seibi"]);
 }
 
-function resizeCanvas() {
-    const resize = () => {
-        const { scale, ratio } = getExampleSize();
+const resize = async () => {
+    // const {
+    // scale,
+    // ratio,
+    // } = getExampleSize();
+    /*        console.log("window:", window);
         console.log("scale:", scale);
-        // alert(`scale:${scale},width:${window.innerWidth * ratio},height:${window.innerHeight * ratio}`);
-        // app.stage.scale.set(scale, scale);
-        app.renderer.resize(window.innerWidth * ratio, window.innerHeight * ratio);
-    };
+        console.log("window.innerWidth :", window.innerWidth);
+        console.log("window.clientWidth :", window.clientWidth);
+        console.log("window.scrollWidth :", window.scrollWidth); */
 
-    resize();
+    // alert(`scale:${scale},width:${window.innerWidth * ratio},height:${window.innerHeight * ratio}`);
+    // app.stage.scale.set(scale, scale);
+    app.destroy();
+    await init();
+    // app.renderer.resize(window.innerWidth * ratio, window.innerHeight * ratio);
+    // setTimeout(async () => {
+    //     const spineExample = await getSpine();
+    //     app.stage.addChild(spineExample);
+    // }, 100);
+};
 
-    window.addEventListener("resize", resize);
-}
 onBeforeUnmount(() => {
-    app?.destroy();
+    app.destroy();
 });
 </script>
 
