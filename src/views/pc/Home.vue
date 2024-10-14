@@ -1,6 +1,10 @@
 <template>
     <div class="home">
-        <p>domainName:{{ domainName }}</p>
+        <client-only>
+            <p>domainName:{{ domainName }}</p>
+            <p>is www.vue-test.site:{{ isVueTestSite }}</p>
+        </client-only>
+
         <hr />
         <el-button @click="screenshot">Screenshot</el-button>
         <main id="screenshot_node">
@@ -142,6 +146,9 @@ console.log(window.location);
 const domainName = computed(() => {
     return window.location.origin;
 }); // 获取当前域名
+const isVueTestSite = computed(() => {
+    return window.location.hostname === "www.vue-test.site";
+}); // 判断是否是 www.vue-test.site
 </script>
 <style lang="less" scoped>
 main {
