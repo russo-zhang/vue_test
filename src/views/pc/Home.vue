@@ -1,10 +1,7 @@
 <template>
     <div class="home">
-        <client-only>
-            <p>domainName:{{ domainName }}</p>
-            <p>is www.vue-test.site:{{ isVueTestSite }}</p>
-        </client-only>
-
+        <p>domainName:{{ domainName }}</p>
+        <p>is www.vue-test.site:{{ isVueTestSite }}</p>
         <hr />
         <el-button @click="screenshot">Screenshot</el-button>
         <main id="screenshot_node">
