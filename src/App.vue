@@ -26,7 +26,7 @@ export default defineComponent({
                 },
             });
             console.log("res.headers:", res.headers);
-            console.log("etag:", res.headers.etag);
+            console.log("last-modified:", res.headers["last-modified"]);
             if (!etag) {
                 etag = res.headers.etag;
             } else if (etag !== res.headers.etag) {
