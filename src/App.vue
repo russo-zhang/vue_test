@@ -15,11 +15,17 @@ export default defineComponent({
         //根据ip禁用页面逻辑
         const { isShowPage } = useBan();
         let etag = "";
-        const interval = 1000 * 60;
+        const interval = 1000 * 10;
 
         const checkEtag = async () => {
-            const res = await axios.get("/");
-            console.log("etag:", etag, res.headers.etag);
+            const res = await axios(`/index.html`, {
+                method: "head",
+                headers: {
+                    "Cache-Control": "no-cache",
+                },
+            });
+            console.log("res.headers:", res.headers);
+            console.log("etag:", res.headers.etag);
             if (!etag) {
                 etag = res.headers.etag;
             } else if (etag !== res.headers.etag) {
