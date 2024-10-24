@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <header>hello world</header>
+        <header>hello world-----------------</header>
         <router-view :class="{ hide_app: !isShowPage }" />
     </div>
 </template>
