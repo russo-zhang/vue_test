@@ -1,5 +1,7 @@
 <template>
-    <router-view :class="{ hide_app: !isShowPage }" />
+    <div class="app">
+        <router-view :class="{ hide_app: !isShowPage }" />
+    </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
