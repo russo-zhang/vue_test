@@ -46,6 +46,8 @@ export default defineComponent({
                         });
                         setTimeout(checkEtag, interval);
                     });
+            } else {
+                setTimeout(checkEtag, interval);
             }
         };
         checkEtag();
