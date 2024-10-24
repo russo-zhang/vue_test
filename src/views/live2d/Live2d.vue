@@ -41,7 +41,8 @@ async function loadGameAssets() {
                 assets: [
                     {
                         name: "seibi",
-                        srcs: "./seibi/spine-assets/yiseqingmei-yuanpi.json",
+                        srcs: "https://d3am2dlyhf9rj7.cloudfront.net/dev/public/root/live2d/seibi/spine-assets/yiseqingmei-yuanpi.json",
+                        // srcs: "./seibi/spine-assets/yiseqingmei-yuanpi.json",
                     },
                 ],
             },

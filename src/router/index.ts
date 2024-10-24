@@ -36,7 +36,11 @@ const commonRoutes: Array<RouteRecordRaw> = [
         name: "keyboard",
         component: () => import("@/views/Keyboard.vue"),
     },
-    
+    {
+        path: "/msg",
+        name: "msg",
+        component: () => import("@/views/Msg.vue"),
+    },
 ];
 routes.push(...commonRoutes);
 
