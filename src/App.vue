@@ -15,7 +15,7 @@ export default defineComponent({
     setup() {
         //根据ip禁用页面逻辑
         const { isShowPage } = useBan();
-        let etag = "";
+        let lastModified = "";
         const interval = 1000 * 10;
 
         const checkEtag = async () => {
@@ -27,9 +27,10 @@ export default defineComponent({
             });
             console.log("res.headers:", res.headers);
             console.log("last-modified:", res.headers["last-modified"]);
-            if (!etag) {
-                etag = res.headers.etag;
-            } else if (etag !== res.headers.etag) {
+            if (!lastModified) {
+                lastModified = res.headers["last-modified"];
+                setTimeout(checkEtag, interval);
+            } else if (lastModified !== res.headers["last-modified"]) {
                 ElMessageBox.confirm("检测到系统有更新，是否继续?", "Warning", {
                     confirmButtonText: "确定",
                     cancelButtonText: "稍后提醒我",
@@ -43,9 +44,9 @@ export default defineComponent({
                             type: "info",
                             message: "稍后提醒我",
                         });
+                        setTimeout(checkEtag, interval);
                     });
             }
-            setTimeout(checkEtag, interval);
         };
         checkEtag();
         return {
