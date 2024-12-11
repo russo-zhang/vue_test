@@ -21,8 +21,10 @@
         "pixi-console": "^4.0.0",
         "pixi-spine": "^4.0.4",
         "pixi.js": "^7.3.2",
+        "swiper": "^8.4.7",
         "vant": "^4.9.0",
         "vue": "^3.2.13",
+        "vue-awesome-swiper": "^5.0.1",
         "vue-i18n": "^9.2.0",
         "vue-router": "^4.0.3"
     },
@@ -44,6 +46,8 @@
         "less-loader": "^8.0.0",
         "postcss-px-to-viewport": "^1.1.1",
         "prettier": "^2.4.1",
+        "sass": "^1.81.0",
+        "sass-loader": "^16.0.3",
         "style-resources-loader": "^1.5.0",
         "typescript": "~4.5.5"
     }

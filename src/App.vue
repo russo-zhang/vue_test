@@ -61,7 +61,7 @@ export default defineComponent({
                     setTimeout(checkLastModified, interval);
                 }
             };
-            // 生产环境检测
+            // 生产环境执行检测
             if (process.env.NODE_ENV === "production") {
                 checkLastModified();
             }

@@ -34,23 +34,29 @@ const init = async () => {
     app.stage.interactive = true;
 };
 async function loadGameAssets() {
-    const manifest = {
-        bundles: [
-            {
-                name: "seibi",
-                assets: [
-                    {
-                        name: "seibi",
-                        srcs: "https://d3am2dlyhf9rj7.cloudfront.net/dev/public/root/live2d/seibi/spine-assets/yiseqingmei-yuanpi.json",
-                        // srcs: "./seibi/spine-assets/yiseqingmei-yuanpi.json",
-                    },
-                ],
-            },
-        ],
-    };
+    try {
+        const manifest = {
+            bundles: [
+                {
+                    name: "seibi",
+                    assets: [
+                        {
+                            name: "seibi",
+                            srcs: "https://d3am2dlyhf9rj7.cloudfront.net/dev/public/root/live2d/seibi/spine-assets/yiseqingmei-yuanpi.json",
+                            // srcs: "./seibi/spine-assets/yiseqingmei-yuanpi.json",
+                        },
+                    ],
+                },
+            ],
+        };
 
-    await Assets.init({ manifest });
-    await Assets.loadBundle(["seibi"]);
+        const res1 = await Assets.init({ manifest });
+        console.log("res1:", res1);
+        const res2 = await Assets.loadBundle(["seibi"]);
+        console.log("res2:", res2);
+    } catch (error) {
+        console.log("error:", error);
+    }
 }
 
 const resize = async () => {
@@ -66,8 +72,8 @@ const resize = async () => {
 
     // alert(`scale:${scale},width:${window.innerWidth * ratio},height:${window.innerHeight * ratio}`);
     // app.stage.scale.set(scale, scale);
-    app.destroy();
-    await init();
+    // app.destroy();
+    // await init();
     // app.renderer.resize(window.innerWidth * ratio, window.innerHeight * ratio);
     // setTimeout(async () => {
     //     const spineExample = await getSpine();

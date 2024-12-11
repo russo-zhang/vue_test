@@ -6,6 +6,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/mobile/Home.vue"),
     },
     {
+        path: "/swipe",
+        name: "Swipe",
+        component: () => import("@/views/mobile/Swipe.vue"),
+    },
+    {
         path: "/screenshot",
         name: "Screenshot",
         component: () => import("@/views/Screenshot.vue"),
