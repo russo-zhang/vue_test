@@ -28,8 +28,9 @@ export const usePay = () => {
 
     const getOrderStatus = async () => {
         try {
-            const res = await getOrderInfo({ order_id: order_id, signature });
+            const res: any = await getOrderInfo({ order_id: order_id, signature });
             if (res.data.code !== 0) return;
+            console.log("res.data.data:", res.data.data);
             site_type.value = res.data.data.site_type;
             if (res.data.data.status === 2) {
                 //成功直接跳转到成功页面
