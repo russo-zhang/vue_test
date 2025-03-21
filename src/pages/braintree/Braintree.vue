@@ -152,11 +152,11 @@ const startPayment = async () => {
     }
     try {
         const payload = await localPaymentInstance.startPayment({
-            // paymentType: "alipay" as any,
-            paymentType: "bancontact",
+            paymentType: "alipay" as any,
+            // paymentType: "bancontact",
             amount: amount,
-            // currencyCode: currency,
-            currencyCode: "EUR",
+            // currencyCode: "EUR",
+            currencyCode: currency,
             givenName: "test givenName",
             surname: "test surname",
             fallback: {
