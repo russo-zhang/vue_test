@@ -21,9 +21,9 @@ export const usePay = () => {
         return `${officialUrl}/resource/payment/failed.html`;
     });
     const redirect = (url: Ref<string>) => {
-        console.log("redirect url:", url);
-        // window.location.replace(url.value);
-        window.open(url.value, "_blank");
+        console.log("redirect url:", url.value);
+        window.location.replace(url.value);
+        // window.open(url.value, "_blank");
     };
 
     const getOrderStatus = async () => {
