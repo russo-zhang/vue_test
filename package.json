@@ -12,6 +12,8 @@
     "dependencies": {
         "@esotericsoftware/spine-pixi-v8": "~4.2.0",
         "axios": "^0.27.2",
+        "braintree-web": "^3.116.3",
+        "braintree-web-drop-in": "^1.44.1",
         "clientjs": "^0.2.1",
         "device-detector-js": "^3.0.3",
         "downloadjs": "^1.4.7",

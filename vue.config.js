@@ -24,10 +24,10 @@ module.exports = {
         },
     },
     chainWebpack: (config) => {
-        config.plugin("html").tap((args) => {
-            args[0].title = "Vue For Test";
-            return args;
-        });
+        // config.plugin("html").tap((args) => {
+        //     args[0].title = "Vue For Test";
+        //     return args;
+        // });
         //消除vue-i18n的警告
         config.resolve.alias.set("vue-i18n", "vue-i18n/dist/vue-i18n.cjs.js");
     },
