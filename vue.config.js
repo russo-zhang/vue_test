@@ -6,6 +6,23 @@ const CompressionPlugin = require("compression-webpack-plugin");
 module.exports = {
     publicPath: "/",
     productionSourceMap: false, //生产环境源码映射
+    pages: {
+        index: {
+            // page 的入口
+            entry: "src/main.ts",
+            // 模板来源
+            template: "public/index.html",
+            // 在 dist/index.html 的输出
+            filename: "index.html",
+            title: "Vue For Test",
+        },
+        braintree: {
+            entry: "src/pages/braintree/main.ts",
+            template: "public/braintree.html",
+            filename: "braintree.html",
+            title: "Braintree Checkout",
+        },
+    },
     chainWebpack: (config) => {
         config.plugin("html").tap((args) => {
             args[0].title = "Vue For Test";
