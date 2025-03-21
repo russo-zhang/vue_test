@@ -1,0 +1,278 @@
+
+xxgbaizhan.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Above Left Knee
+  rotate: true
+  xy: 0, 0
+  size: 430, 877
+  orig: 431, 903
+  offset: 1, 26
+  index: -1
+Above Right Knee
+  rotate: true
+  xy: 1085, 341
+  size: 278, 916
+  orig: 279, 919
+  offset: 0, 3
+  index: -1
+Base Body_Neck
+  rotate: true
+  xy: 1579, 1029
+  size: 335, 349
+  orig: 335, 349
+  offset: 0, 0
+  index: -1
+Base Body_Waist
+  rotate: false
+  xy: 0, 702
+  size: 476, 362
+  orig: 476, 362
+  offset: 0, 0
+  index: -1
+Below Right Knee
+  rotate: true
+  xy: 0, 432
+  size: 268, 1083
+  orig: 268, 1084
+  offset: 0, 1
+  index: -1
+Belt
+  rotate: false
+  xy: 1897, 1722
+  size: 151, 159
+  orig: 151, 159
+  offset: 0, 0
+  index: -1
+Belt Option
+  rotate: false
+  xy: 0, 1677
+  size: 269, 121
+  orig: 269, 122
+  offset: 0, 1
+  index: -1
+Belt Option2
+  rotate: false
+  xy: 1389, 1628
+  size: 217, 139
+  orig: 218, 139
+  offset: 0, 0
+  index: -1
+Belt2
+  rotate: true
+  xy: 1872, 1495
+  size: 225, 169
+  orig: 225, 169
+  offset: 0, 0
+  index: -1
+Cheek
+  rotate: false
+  xy: 1269, 1774
+  size: 192, 107
+  orig: 193, 109
+  offset: 0, 1
+  index: -1
+EYE
+  rotate: false
+  xy: 1463, 1769
+  size: 224, 112
+  orig: 225, 113
+  offset: 1, 1
+  index: -1
+EyeBrow
+  rotate: false
+  xy: 139, 1800
+  size: 189, 81
+  orig: 191, 82
+  offset: 1, 1
+  index: -1
+Front Hair 1
+  rotate: true
+  xy: 845, 1640
+  size: 139, 292
+  orig: 139, 294
+  offset: 0, 2
+  index: -1
+Front Hair 2
+  rotate: true
+  xy: 1139, 1633
+  size: 139, 248
+  orig: 139, 248
+  offset: 0, 0
+  index: -1
+Hair+
+  rotate: true
+  xy: 330, 1791
+  size: 90, 710
+  orig: 91, 710
+  offset: 1, 0
+  index: -1
+Head
+  rotate: true
+  xy: 793, 866
+  size: 342, 403
+  orig: 343, 404
+  offset: 1, 1
+  index: -1
+Left Hand
+  rotate: true
+  xy: 271, 1657
+  size: 132, 165
+  orig: 134, 167
+  offset: 1, 2
+  index: -1
+Left Hand2
+  rotate: false
+  xy: 1689, 1761
+  size: 206, 120
+  orig: 208, 122
+  offset: 0, 1
+  index: -1
+Left Lower Arm
+  rotate: true
+  xy: 0, 1512
+  size: 142, 467
+  orig: 142, 467
+  offset: 0, 0
+  index: -1
+Left Lower Arm2
+  rotate: true
+  xy: 1280, 1102
+  size: 326, 297
+  orig: 326, 299
+  offset: 0, 1
+  index: -1
+Left Upper Arm
+  rotate: true
+  xy: 1608, 1619
+  size: 140, 262
+  orig: 147, 263
+  offset: 7, 0
+  index: -1
+Left Upper Arm_Backside
+  rotate: true
+  xy: 438, 1656
+  size: 133, 239
+  orig: 135, 240
+  offset: 1, 0
+  index: -1
+Mask
+  rotate: true
+  xy: 1586, 1366
+  size: 251, 269
+  orig: 253, 269
+  offset: 1, 0
+  index: -1
+Right Hand
+  rotate: true
+  xy: 679, 1656
+  size: 133, 164
+  orig: 133, 167
+  offset: 0, 3
+  index: -1
+Right Hand2
+  rotate: false
+  xy: 1365, 1430
+  size: 219, 196
+  orig: 219, 197
+  offset: 0, 1
+  index: -1
+Right Lower Arm
+  rotate: true
+  xy: 886, 1460
+  size: 171, 477
+  orig: 171, 477
+  offset: 0, 0
+  index: -1
+Right Lower Arm2
+  rotate: true
+  xy: 469, 1474
+  size: 164, 415
+  orig: 164, 415
+  offset: 0, 0
+  index: -1
+Right Upper Arm
+  rotate: false
+  xy: 1198, 621
+  size: 469, 406
+  orig: 471, 407
+  offset: 0, 0
+  index: -1
+Right Upper Arm2
+  rotate: true
+  xy: 813, 1210
+  size: 248, 465
+  orig: 250, 466
+  offset: 1, 0
+  index: -1
+Side Front Hair
+  rotate: true
+  xy: 0, 1066
+  size: 218, 791
+  orig: 218, 791
+  offset: 0, 0
+  index: -1
+Side Front Hair_Backside
+  rotate: true
+  xy: 0, 1286
+  size: 186, 811
+  orig: 186, 811
+  offset: 0, 0
+  index: -1
+Tear
+  rotate: false
+  xy: 0, 1814
+  size: 137, 67
+  orig: 138, 67
+  offset: 1, 0
+  index: -1
+zhayan
+  rotate: false
+  xy: 1042, 1781
+  size: 225, 100
+  orig: 226, 101
+  offset: 1, 1
+  index: -1
+
+xxgbaizhan2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Below Left Knee
+  rotate: false
+  xy: 963, 1076
+  size: 715, 963
+  orig: 716, 963
+  offset: 1, 0
+  index: -1
+Hair_Backside
+  rotate: false
+  xy: 0, 558
+  size: 961, 1481
+  orig: 961, 1481
+  offset: 0, 0
+  index: -1
+Skirt
+  rotate: false
+  xy: 608, 22
+  size: 682, 534
+  orig: 682, 534
+  offset: 0, 0
+  index: -1
+Top Clothes
+  rotate: true
+  xy: 0, 0
+  size: 556, 606
+  orig: 556, 607
+  offset: 0, 1
+  index: -1
+Top Clothes_Backside
+  rotate: false
+  xy: 1292, 461
+  size: 605, 613
+  orig: 605, 670
+  offset: 0, 57
+  index: -1

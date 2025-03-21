@@ -1,68 +1,63 @@
 import { isMobile } from "@/utils";
-import { Spine } from "pixi-spine";
-
+// import { Spine } from "pixi-spine";
+import { Spine } from "@esotericsoftware/spine-pixi-v8";
 import { Assets } from "pixi.js";
 
 export async function getSpine() {
     try {
+        console.log("Assets:", Assets);
         const spineResource = await Assets.get("seibi");
         console.log("spineResource:", spineResource);
+        if (!spineResource) {
+            console.warn("spineResource is null");
+            return;
+        }
         const spineExample = new Spine(spineResource.spineData);
         console.log("spineExample:", spineExample);
-        const { width, height, ratio } = getExampleSize();
-        // alert(`width:${width}, height:${height}`);
-        // console.log("scale:", scale);
-        // console.log("width:", width);
-        console.log("window.innerHeight:", window.innerHeight * ratio);
-        console.log("height:", height);
-        // spineExample.scale.set(scale, scale);
+        const width = 1920;
+        const height = 1080;
         spineExample.width = width;
         spineExample.height = height;
-        spineExample.x = (window.innerWidth * ratio - width) / 2;
+        spineExample.x = (window.innerWidth - width) / 2;
         console.log("spineExample.x:", spineExample.x);
-        // spineExample.y = window.innerHeight * ratio;
-        // spineExample.y = window.innerHeight * ratio * 2 - height / 2;
-        spineExample.y = (window.innerHeight * ratio + height) / 2;
+        spineExample.y = (window.innerHeight + height) / 2;
+        // skins default HAIXIU KAIXIN Normal SHENGQI WEIXIAO WUNAI
         // 设置皮肤 [HAIXIU, HAIXIU, KAIXIN, Normal, SHENGQI, WEIXIAO, WUNAI]
-        spineExample.skeleton.setSkinByName("Normal");
+        // const defaultSkinName = "WUNAI";
+        const defaultSkinName = getDefalutSkin(spineResource.spineData);
+        // console.log("defaultSkinName:", defaultSkinName);
+        spineExample.skeleton.setSkinByName(defaultSkinName);
+
         //动画轨道的索引, 动画名称, 是否循环播放
-        spineExample.state.setAnimation(0, "IDLE", true);
+        const defaultAnimationName = getDefaultAnimationName(spineResource.spineData);
+        // console.log("defaultAnimationName:", defaultAnimationName);
+        spineExample.state.setAnimation(0, defaultAnimationName, true);
         return spineExample;
     } catch (error) {
         console.log("error:", error);
     }
 }
-export const getExampleSize = () => {
-    const ratio = window.devicePixelRatio || 1;
-    const rate = 0.8;
-    const modelWidth = 1294.28 * rate;
-    const modelHeight = 2602.02 * rate;
-    const windowWidth = window.innerWidth * ratio * rate;
-    const windowHeight = window.innerHeight * ratio * rate;
-    const scale = Math.round((1 / ratio) * 1000) / 1000;
-    const size = { ratio, scale, width: 0, height: 0 };
-    // alert(`size:${JSON.stringify(size)}, ratio:${ratio}`);
-    if (isMobile() && windowWidth < windowHeight) {
-        size.width = windowWidth;
-        size.height = (modelHeight * windowWidth) / modelWidth;
-    } else {
-        size.height = windowHeight;
-        size.width = (modelWidth * windowHeight) / modelHeight;
+
+function getDefalutSkin({ skins, defaultSkin }: any) {
+    if (skins.length > 0) {
+        // 优先显示的皮肤
+        const priorList = ["Normal", "stand"];
+        for (let i = 0; i < priorList.length; i++) {
+            const skin = skins.find((item: any) => item.name === priorList[i]);
+            if (skin) {
+                return skin.name;
+            }
+        }
     }
-    // size.width = size.width * ratio;
-    // size.height = size.height * ratio;
-    return size;
-};
-/* export async function getSpine(): Promise<Spine> {
-    const spineResource = await Assets.get("pixie");
-
-    const spineExample = new Spine(spineResource.spineData);
-    spineExample.scale.set(0.3, 0.3);
-    spineExample.y = spineExample.height * 1.1;
-    spineExample.x = spineExample.width / 2;
-    spineExample.stateData.setMix("running", "jump", 0.2);
-    spineExample.stateData.setMix("jump", "running", 0.4);
-    spineExample.state.setAnimation(0, "running", true);
-
-    return spineExample;
-} */
+    return defaultSkin.name;
+}
+function getDefaultAnimationName({ animations }: any) {
+    const priorList = ["stand"];
+    for (let i = 0; i < priorList.length; i++) {
+        const animation = animations.find((item: any) => item.name === priorList[i]);
+        if (animation) {
+            return animation.name;
+        }
+    }
+    return animations[0].name;
+}

@@ -4,34 +4,41 @@
     </div>
 </template>
 <script setup>
-import "pixi-spine";
-import { Application, Assets } from "pixi.js";
-import { getSpine, getExampleSize } from "./utils/spine-example";
+// import "pixi-spine";
+// import { Application, Assets } from "pixi.js";
+
+import * as PIXI from "pixi.js";
+import { Spine } from "@esotericsoftware/spine-pixi-v8";
+import { getSpine } from "./utils/spine-example";
 import { onMounted, onBeforeUnmount, ref } from "vue";
 const liveCanvas = ref(null);
-let app;
+const app = new PIXI.Application();
 onMounted(() => {
+    console.log("PIXI:", PIXI);
     init();
-    // resizeCanvas();
-    window.addEventListener("resize", resize);
 });
 const init = async () => {
-    app = new Application({
+    await app.init({
         backgroundColor: "#3a3d41",
-        view: liveCanvas.value,
+        canvas: liveCanvas.value,
         autoStart: true,
         resizeTo: window,
         backgroundAlpha: 1,
     });
+    console.log("app:", app);
     await loadGameAssets();
 
-    const spineExample = await getSpine();
+    // const spineExample = await getSpine();
+    // if (!spineExample) {
+    //     console.warn("spineExample is null");
+    //     return;
+    // }
 
-    const { ratio } = getExampleSize();
-    app.renderer.resize(window.innerWidth * ratio, window.innerHeight * ratio);
-
-    app.stage.addChild(spineExample);
-    app.stage.interactive = true;
+    // if (!app) {
+    //     return;
+    // }
+    // app.stage.addChild(spineExample);
+    // app.stage.interactive = true;
 };
 async function loadGameAssets() {
     try {
@@ -42,47 +49,27 @@ async function loadGameAssets() {
                     assets: [
                         {
                             name: "seibi",
-                            srcs: "https://d3am2dlyhf9rj7.cloudfront.net/dev/public/root/live2d/seibi/spine-assets/yiseqingmei-yuanpi.json",
-                            // srcs: "./seibi/spine-assets/yiseqingmei-yuanpi.json",
+                            // srcs: "https://d3am2dlyhf9rj7.cloudfront.net/dev/public/root/live2d/seibi/spine-assets/yiseqingmei-yuanpi.json",
+                            srcs: "/live2d/AU.RO.RA_day/xxgbaizhan.json",
                         },
                     ],
                 },
             ],
         };
 
-        const res1 = await Assets.init({ manifest });
+        const res1 = await PIXI.Assets.init({ manifest });
         console.log("res1:", res1);
-        const res2 = await Assets.loadBundle(["seibi"]);
-        console.log("res2:", res2);
+        // const res2 = await PIXI.Assets.loadBundle(["seibi"]);
+        // console.log("res2:", res2);
     } catch (error) {
-        console.log("error:", error);
+        console.error("error:", error);
     }
 }
 
-const resize = async () => {
-    // const {
-    // scale,
-    // ratio,
-    // } = getExampleSize();
-    /*        console.log("window:", window);
-        console.log("scale:", scale);
-        console.log("window.innerWidth :", window.innerWidth);
-        console.log("window.clientWidth :", window.clientWidth);
-        console.log("window.scrollWidth :", window.scrollWidth); */
-
-    // alert(`scale:${scale},width:${window.innerWidth * ratio},height:${window.innerHeight * ratio}`);
-    // app.stage.scale.set(scale, scale);
-    // app.destroy();
-    // await init();
-    // app.renderer.resize(window.innerWidth * ratio, window.innerHeight * ratio);
-    // setTimeout(async () => {
-    //     const spineExample = await getSpine();
-    //     app.stage.addChild(spineExample);
-    // }, 100);
-};
-
 onBeforeUnmount(() => {
-    app.destroy();
+    if (app && app.destroy) {
+        app.destroy();
+    }
 });
 </script>
 
