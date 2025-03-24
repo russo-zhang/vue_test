@@ -51,14 +51,14 @@ const init = async () => {
                 },
             },
             applePay: {
-                displayName: "Riichi City Store",
+                displayName: "Store",
                 paymentRequest: {
                     // countryCode: "",
                     // currencyCode: currency,
                     // supportedNetworks: [],
                     // merchantCapabilities: [],
                     total: {
-                        label: "Riichi City Store",
+                        label: "Store",
                         amount: String(amount),
                     },
                     // We recommend collecting billing address information, at minimum
