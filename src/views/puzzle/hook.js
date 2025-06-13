@@ -1,3 +1,9 @@
+/* eslint-disable no-case-declarations */
+/* eslint-disable no-fallthrough */
+/* eslint-disable no-inner-declarations */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-constant-condition */
+/* eslint-disable @typescript-eslint/no-this-alias */
 import { ElMessage } from "element-plus";
 import { onMounted } from "vue";
 
@@ -435,6 +441,7 @@ export const usePuzzle = () => {
         listLoops() {
             // internal : checks if an edge given by kx, ky is common with another cell
             // returns true or false
+            
             const that = this;
             function edgeIsCommon(kx, ky, edge) {
                 let k;
