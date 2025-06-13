@@ -8,7 +8,7 @@
 // import { Application, Assets } from "pixi.js";
 
 import * as PIXI from "pixi.js";
-import { Spine } from "@esotericsoftware/spine-pixi-v8";
+import { Spine } from "@esotericsoftware/spine-pixi-v7";
 import { getSpine } from "./utils/spine-example";
 import { onMounted, onBeforeUnmount, ref } from "vue";
 const liveCanvas = ref(null);

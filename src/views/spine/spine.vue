@@ -24,7 +24,7 @@
 // import "pixi-spine";
 // import { Spine } from "pixi-spine";
 import { Application, Assets } from "pixi.js";
-import { Spine } from "@esotericsoftware/spine-pixi-v8";
+import { Spine } from "@esotericsoftware/spine-pixi-v7";
 import { getDefaultAnimationName } from "./spine-example";
 import { roleConfigList } from "@/utils/roleConfig";
 import { getPxByRem } from "@/utils/utils";
@@ -72,19 +72,21 @@ const roleConfig = computed(() => {
 const init = async () => {
     try {
         // 创建 PIXI 应用
-        await app.init({
-            width: window.innerWidth,
-            height: window.innerHeight,
-            resolution: window.devicePixelRatio || 1,
-            autoDensity: true,
-            resizeTo: window,
-            backgroundColor: 0x2c3e50,
-            hello: true,
-        });
+        (await new Application()) <
+            HTMLCanvasElement >
+            {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                resolution: window.devicePixelRatio || 1,
+                autoDensity: true,
+                resizeTo: window,
+                backgroundColor: 0x2c3e50,
+                hello: true,
+            };
 
         // Add pixi canvas element (app.view) to the document's body
         // document.body.appendChild(app.canvas);
-        liveCanvas.value.appendChild(app.canvas);
+        liveCanvas.value.appendChild(app.view);
 
         // Pre-load the skeleton data and atlas. You can also load .json skeleton data.
         Assets.add({ alias: "spineboyData", src: "/spine/Mori_Luka/out/senliuge-yuanpi.json" });
@@ -92,11 +94,11 @@ const init = async () => {
         const res = await Assets.load(["spineboyData", "spineboyAtlas"]);
         console.log("res:", res);
         // Create the spine display object
-        const spineboy = Spine.from({
-            atlas: "spineboyAtlas",
-            skeleton: "spineboyData",
+        // Create the spine display object
+        const spineboy = Spine.from("spineboyData", "spineboyAtlas", {
             scale: 0.5,
         });
+        console.log("spineboy:", spineboy);
 
         // Set the default mix time to use when transitioning
         // from one animation to the next.

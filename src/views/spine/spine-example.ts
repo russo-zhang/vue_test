@@ -1,5 +1,5 @@
 import { isMobile } from "@/utils";
-import { Spine } from "@esotericsoftware/spine-pixi-v8";
+import { Spine } from "@esotericsoftware/spine-pixi-v7";
 
 import { Assets } from "pixi.js";
 // import { showNotify } from "vant";

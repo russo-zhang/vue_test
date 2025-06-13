@@ -1,6 +1,9 @@
 <template>
     <div class="app">
-        <header>hello world-----------------</header>
+        <el-link v-for="(item, index) in routes" :key="index" :href="item.path" :type="item.name === $route.name ? 'primary' : 'info'">
+            {{ item.name }}
+        </el-link>
+        <el-divider></el-divider>
         <router-view :class="{ hide_app: !isShowPage }" />
     </div>
 </template>
@@ -10,6 +13,7 @@ import { useBan } from "@/hooks/ban";
 import axios from "@/api";
 import { ElMessage, ElMessageBox } from "element-plus";
 
+import router from "@/router";
 export default defineComponent({
     name: "App",
     setup() {
@@ -69,6 +73,7 @@ export default defineComponent({
         checkSystemUpdate(60 * 24);
         return {
             isShowPage,
+            routes: router.getRoutes(),
         };
     },
 });
@@ -77,5 +82,12 @@ export default defineComponent({
 @import "@/assets/common/css/base.less";
 .hide_app {
     visibility: hidden;
+}
+</style>
+<style lang="less" scoped>
+.app {
+    > a {
+        margin-right: 10px;
+    }
 }
 </style>

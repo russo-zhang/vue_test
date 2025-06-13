@@ -12,6 +12,11 @@ if (isMobile()) {
 }
 const commonRoutes: Array<RouteRecordRaw> = [
     {
+        path: "/puzzle",
+        name: "puzzle",
+        component: () => import("@/views/puzzle/Puzzle.vue"),
+    },
+    {
         path: "/info",
         name: "info",
         component: () => import("@/views/Info.vue"),

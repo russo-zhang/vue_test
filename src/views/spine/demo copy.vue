@@ -22,14 +22,8 @@ async function init() {
     document.body.appendChild(app.view);
 
     // Pre-load the skeleton data and atlas. You can also load .json skeleton data.
-    // Assets.add({ alias: "spineboyData", src: "/spine/demo_v7/spineboy-pro.skel" });
-    // Assets.add({ alias: "spineboyAtlas", src: "/spine/demo_v7/spineboy-pma.atlas" });
-
-    // Assets.add({ alias: "spineboyData", src: "/spine/Kazama_Shizuku/out/fengjian-yuanpi.json" });
-    // Assets.add({ alias: "spineboyAtlas", src: "/spine/Kazama_Shizuku/out/fengjian-yuanpi.atlas" });
-
-    Assets.add({ alias: "spineboyData", src: "/spine/Yuzo/long1.json" });
-    Assets.add({ alias: "spineboyAtlas", src: "/spine/Yuzo/long1.atlas" });
+    Assets.add({ alias: "spineboyData", src: "/spine/demo_v7/spineboy-pro.skel" });
+    Assets.add({ alias: "spineboyAtlas", src: "/spine/demo_v7/spineboy-pma.atlas" });
     await Assets.load(["spineboyData", "spineboyAtlas"]);
 
     // Create the spine display object
@@ -46,14 +40,8 @@ async function init() {
     spineboy.x = window.innerWidth / 2;
     spineboy.y = window.innerHeight / 2 + spineboy.getBounds().height / 2;
 
-    spineboy.skeleton.setSkinByName("WUNAI");
-    // spineboy.skeleton.setSkinByName("default");
-    
     // Set animation "cape-follow-example" on track 0, looped.
-    // spineboy.state.setAnimation(0, "run", true);
-    // spineboy.state.setAnimation(0, "IDLE", true);
-    spineboy.state.setAnimation(0, "ldio", true);
-    
+    spineboy.state.setAnimation(0, "run", true);
 
     // Add the display object to the stage.
     app.stage.addChild(spineboy);
